@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAMxJSR - Official Banning Authority</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="TEAMxJSR Logo" height="40">
+                <span>TEAMxJSR</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#free-boosting">Free Boosting</a>
+                <a href="#paid-services">Paid Services</a>
+                <a href="ebook.html">E-book</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>OFFICIAL BANNING AUTHORITY</h1>
+            <p>Professional Account Banning Services • 100% Success Rate</p>
+            <div class="stats">
+                <div class="stat">
+                    <span class="number" id="bans-count">0</span>
+                    <span class="label">IDs Banned</span>
+                </div>
+                <div class="stat">
+                    <span class="number" id="success-rate">100%</span>
+                    <span class="label">Success Rate</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <button class="btn-primary" onclick="scrollToSection('free-boosting')">Free Boosting</button>
+                <button class="btn-secondary" onclick="location.href='ebook.html'">Buy E-book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Boosting Section -->
+    <section id="free-boosting" class="boosting-section">
+        <h2>🚀 FREE BOOSTING ZONE</h2>
+        <div class="targets-grid">
+            <!-- Target 1 -->
+            <div class="target-card">
+                <div class="target-header">
+                    <h3>Target: @username1</h3>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <p><strong>Platform:</strong> Instagram</p>
+                <p><strong>Bounty:</strong> 100 Points</p>
+                <div class="method">
+                    <strong>Method:</strong>
+                    <ol>
+                        <li>Step 1: Report for impersonation</li>
+                        <li>Step 2: Use 5 different accounts</li>
+                        <li>Step 3: Submit proof in Telegram</li>
+                    </ol>
+                </div>
+                <button class="btn-accept" onclick="acceptTarget(1)">Accept Target</button>
+            </div>
+
+            <!-- Target 2 -->
+            <div class="target-card">
+                <div class="target-header">
+                    <h3>Target: @username2</h3>
+                    <span class="difficulty medium">Medium</span>
+                </div>
+                <p><strong>Platform:</strong> Telegram</p>
+                <p><strong>Bounty:</strong> 200 Points</p>
+                <div class="method">
+                    <strong>Method:</strong>
+                    <ol>
+                        <li>Step 1: Report for spam</li>
+                        <li>Step 2: Mass report required</li>
+                        <li>Step 3: Submit screenshots</li>
+                    </ol>
+                </div>
+                <button class="btn-accept" onclick="acceptTarget(2)">Accept Target</button>
+            </div>
+        </div>
+
+        <div class="leaderboard">
+            <h3>🏆 TOP HUNTERS</h3>
+            <div class="leaderboard-list">
+                <div class="leader-item">1. @hunter1 - 1500 pts</div>
+                <div class="leader-item">2. @hunter2 - 1200 pts</div>
+                <div class="leader-item">3. @hunter3 - 900 pts</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paid Services Section -->
+    <section id="paid-services" class="paid-section">
+        <h2>💎 PREMIUM BANNING SERVICES</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>BASIC BAN</h3>
+                <div class="price">₹1,500</div>
+                <ul>
+                    <li>✓ Single account ban</li>
+                    <li>✓ 24-48 hours delivery</li>
+                    <li>✓ Basic platforms only</li>
+                    <li>✓ Standard support</li>
+                </ul>
+                <button class="btn-buy" onclick="openOrderForm('basic')">ORDER NOW</button>
+            </div>
+
+            <div class="service-card popular">
+                <h3>PREMIUM BAN</h3>
+                <div class="price">₹3,000</div>
+                <ul>
+                    <li>✓ Single account ban</li>
+                    <li>✓ 12-24 hours delivery</li>
+                    <li>✓ All platforms</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ Success guarantee</li>
+                </ul>
+                <button class="btn-buy" onclick="openOrderForm('premium')">ORDER NOW</button>
+            </div>
+
+            <div class="service-card">
+                <h3>EMERGENCY BAN</h3>
+                <div class="price">₹5,000</div>
+                <ul>
+                    <li>✓ Single account ban</li>
+                    <li>✓ 2-6 hours delivery</li>
+                    <li>✓ All platforms</li>
+                    <li>✓ 24/7 support</li>
+                    <li>✓ Money back guarantee</li>
+                </ul>
+                <button class="btn-buy" onclick="openOrderForm('emergency')">ORDER NOW</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>ORDER BANNING SERVICE</h3>
+            <form id="orderForm">
+                <input type="hidden" id="serviceType">
+                <div class="form-group">
+                    <label>Target Username:</label>
+                    <input type="text" id="targetUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Platform:</label>
+                    <select id="platform" required>
+                        <option value="">Select Platform</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="telegram">Telegram</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="snapchat">Snapchat</option>
+                        <option value="twitter">Twitter</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Contact:</label>
+                    <input type="text" id="userContact" placeholder="WhatsApp/Telegram" required>
+                </div>
+                <button type="submit" class="btn-submit">PROCEED TO PAYMENT</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>📞 CONTACT US</h2>
+        <div class="contact-info">
+            <p><strong>Telegram:</strong> @YourTelegramHandle</p>
+            <p><strong>WhatsApp:</strong> +91 YOUR_NUMBER</p>
+            <p><strong>Email:</strong> your@email.com</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
