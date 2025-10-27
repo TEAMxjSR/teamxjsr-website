@@ -3,187 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAMxJSR - Official Banning Authority</title>
+    <title>TEAMxJSR - Official Banning Authority | Professional Instagram Banning Services</title>
+    <meta name="description" content="Professional Instagram account banning services. OG Boost system with dual coin economy. Mass reporting made easy.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-pulse">
+                    <div class="temp-logo" style="width: 70px; height: 70px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">TJ</div>
+                </div>
+                <span class="logo-text">TEAMxJSR</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-status">Initializing Banning Systems...</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="logo.png" alt="TEAMxJSR Logo" height="40">
+                <div class="temp-logo" style="width: 45px; height: 45px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
                 <span>TEAMxJSR</span>
             </div>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#free-boosting">Free Boosting</a>
-                <a href="#paid-services">Paid Services</a>
-                <a href="ebook.html">E-book</a>
-                <a href="#contact">Contact</a>
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="og-boost.html" class="nav-link"><i class="fas fa-rocket"></i> OG Boost</a>
+                <a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="upload.html" class="nav-link"><i class="fas fa-upload"></i> Upload</a>
+                <a href="referral.html" class="nav-link"><i class="fas fa-users"></i> Referral</a>
+                <a href="leaderboards.html" class="nav-link"><i class="fas fa-trophy"></i> Leaderboards</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-login" onclick="showLogin()">
+                    <i class="fas fa-user"></i> Login
+                </button>
+                <button class="btn-join" onclick="showRegister()">
+                    <i class="fas fa-play"></i> Get Started
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>OFFICIAL BANNING AUTHORITY</h1>
-            <p>Professional Account Banning Services • 100% Success Rate</p>
-            <div class="stats">
-                <div class="stat">
-                    <span class="number" id="bans-count">0</span>
-                    <span class="label">IDs Banned</span>
+    <section class="hero">
+        <div class="hero-bg-animation"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-shield-alt"></i> OFFICIAL BANNING AUTHORITY
                 </div>
-                <div class="stat">
-                    <span class="number" id="success-rate">100%</span>
-                    <span class="label">Success Rate</span>
-                </div>
-            </div>
-            <div class="cta-buttons">
-                <button class="btn-primary" onclick="scrollToSection('free-boosting')">Free Boosting</button>
-                <button class="btn-secondary" onclick="location.href='ebook.html'">Buy E-book</button>
-            </div>
-        </div>
-    </section>
+                
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="600">
+                    <span class="title-gradient">ELITE INSTAGRAM</span>
+                    <span class="title-main">TERMINATION SERVICES</span>
+                </h1>
+                
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="800">
+                    Advanced Banning System • Dual Coin Economy • Mass Reporting Platform
+                </p>
 
-    <!-- Free Boosting Section -->
-    <section id="free-boosting" class="boosting-section">
-        <h2>🚀 FREE BOOSTING ZONE</h2>
-        <div class="targets-grid">
-            <!-- Target 1 -->
-            <div class="target-card">
-                <div class="target-header">
-                    <h3>Target: @username1</h3>
-                    <span class="difficulty easy">Easy</span>
+                <!-- Animated Stats -->
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="stat-item">
+                        <div class="stat-number" id="bansCount">0</div>
+                        <div class="stat-label">Successful Bans</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2.3L+</div>
+                        <div class="stat-label">Coins Distributed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98.7%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1.2K+</div>
+                        <div class="stat-label">Active Hunters</div>
+                    </div>
                 </div>
-                <p><strong>Platform:</strong> Instagram</p>
-                <p><strong>Bounty:</strong> 100 Points</p>
-                <div class="method">
-                    <strong>Method:</strong>
-                    <ol>
-                        <li>Step 1: Report for impersonation</li>
-                        <li>Step 2: Use 5 different accounts</li>
-                        <li>Step 3: Submit proof in Telegram</li>
-                    </ol>
-                </div>
-                <button class="btn-accept" onclick="acceptTarget(1)">Accept Target</button>
-            </div>
 
-            <!-- Target 2 -->
-            <div class="target-card">
-                <div class="target-header">
-                    <h3>Target: @username2</h3>
-                    <span class="difficulty medium">Medium</span>
+                <!-- CTA Buttons -->
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="1200">
+                    <button class="btn-primary" onclick="location.href='og-boost.html'">
+                        <i class="fas fa-rocket"></i>
+                        <span>Start OG Boosting</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                    <button class="btn-secondary" onclick="location.href='upload.html'">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Target</span>
+                    </button>
                 </div>
-                <p><strong>Platform:</strong> Telegram</p>
-                <p><strong>Bounty:</strong> 200 Points</p>
-                <div class="method">
-                    <strong>Method:</strong>
-                    <ol>
-                        <li>Step 1: Report for spam</li>
-                        <li>Step 2: Mass report required</li>
-                        <li>Step 3: Submit screenshots</li>
-                    </ol>
-                </div>
-                <button class="btn-accept" onclick="acceptTarget(2)">Accept Target</button>
-            </div>
-        </div>
 
-        <div class="leaderboard">
-            <h3>🏆 TOP HUNTERS</h3>
-            <div class="leaderboard-list">
-                <div class="leader-item">1. @hunter1 - 1500 pts</div>
-                <div class="leader-item">2. @hunter2 - 1200 pts</div>
-                <div class="leader-item">3. @hunter3 - 900 pts</div>
+                <!-- Scroll Indicator -->
+                <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1400">
+                    <div class="scroll-line"></div>
+                    <span>Scroll to Explore</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Paid Services Section -->
-    <section id="paid-services" class="paid-section">
-        <h2>💎 PREMIUM BANNING SERVICES</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>BASIC BAN</h3>
-                <div class="price">₹1,500</div>
-                <ul>
-                    <li>✓ Single account ban</li>
-                    <li>✓ 24-48 hours delivery</li>
-                    <li>✓ Basic platforms only</li>
-                    <li>✓ Standard support</li>
-                </ul>
-                <button class="btn-buy" onclick="openOrderForm('basic')">ORDER NOW</button>
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why Choose TEAMxJSR?</h2>
+                <p>Advanced features that make us the best in the business</p>
             </div>
 
-            <div class="service-card popular">
-                <h3>PREMIUM BAN</h3>
-                <div class="price">₹3,000</div>
-                <ul>
-                    <li>✓ Single account ban</li>
-                    <li>✓ 12-24 hours delivery</li>
-                    <li>✓ All platforms</li>
-                    <li>✓ Priority support</li>
-                    <li>✓ Success guarantee</li>
-                </ul>
-                <button class="btn-buy" onclick="openOrderForm('premium')">ORDER NOW</button>
-            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Dual Coin System</h3>
+                    <p>Earn Boost Coins from banning and Referral Coins from inviting friends. Flexible economy for maximum earnings.</p>
+                </div>
 
-            <div class="service-card">
-                <h3>EMERGENCY BAN</h3>
-                <div class="price">₹5,000</div>
-                <ul>
-                    <li>✓ Single account ban</li>
-                    <li>✓ 2-6 hours delivery</li>
-                    <li>✓ All platforms</li>
-                    <li>✓ 24/7 support</li>
-                    <li>✓ Money back guarantee</li>
-                </ul>
-                <button class="btn-buy" onclick="openOrderForm('emergency')">ORDER NOW</button>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>OG Boost Technology</h3>
+                    <p>Increase your banning reputation with Instagram algorithm. Higher OG = Faster bans and priority treatment.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Mass Reporting</h3>
+                    <p>Community-powered mass reporting system. Get your targets banned quickly with coordinated efforts.</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Competitive Leaderboards</h3>
+                    <p>Compete with other hunters, climb rankings, and earn special rewards and recognition.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Order Form Modal -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>ORDER BANNING SERVICE</h3>
-            <form id="orderForm">
-                <input type="hidden" id="serviceType">
-                <div class="form-group">
-                    <label>Target Username:</label>
-                    <input type="text" id="targetUsername" required>
-                </div>
-                <div class="form-group">
-                    <label>Platform:</label>
-                    <select id="platform" required>
-                        <option value="">Select Platform</option>
-                        <option value="instagram">Instagram</option>
-                        <option value="telegram">Telegram</option>
-                        <option value="whatsapp">WhatsApp</option>
-                        <option value="snapchat">Snapchat</option>
-                        <option value="twitter">Twitter</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Your Contact:</label>
-                    <input type="text" id="userContact" placeholder="WhatsApp/Telegram" required>
-                </div>
-                <button type="submit" class="btn-submit">PROCEED TO PAYMENT</button>
-            </form>
-        </div>
-    </div>
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How It Works</h2>
+                <p>Simple steps to start banning and earning</p>
+            </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2>📞 CONTACT US</h2>
-        <div class="contact-info">
-            <p><strong>Telegram:</strong> @YourTelegramHandle</p>
-            <p><strong>WhatsApp:</strong> +91 YOUR_NUMBER</p>
-            <p><strong>Email:</strong> your@email.com</p>
+            <div class="steps-container">
+                <div class="step-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Join OG Boost</h3>
+                        <p>Start banning targets in OG Boost zone and earn Boost Coins for each successful ban.</p>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="step-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Invite Friends</h3>
+                        <p>Share your referral link to earn Referral Coins when friends join and participate.</p>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="step-item" data-aos="fade-right" data-aos-delay="600">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Upload Targets</h3>
+                        <p>Spend 1 Referral Coin to upload your own targets with custom Boost Coin rewards.</p>
+                    </div>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="step-item" data-aos="fade-right" data-aos-delay="800">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Earn & Compete</h3>
+                        <p>Climb leaderboards, earn rewards, and become a top ban hunter in the community.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Live Activity Preview -->
+    <section class="live-activity">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Live Community Activity</h2>
+                <p>Real-time updates from our active community</p>
+            </div>
+
+            <div class="activity-feed" data-aos="fade-up" data-aos-delay="200">
+                <div class="activity-item">
+                    <div class="activity-avatar">MJ</div>
+                    <div class="activity-content">
+                        <strong>@MasterHunter</strong> just earned <span class="coin-badge">5 Boost Coins</span>
+                        <span class="activity-time">2 minutes ago</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-avatar">TP</div>
+                    <div class="activity-content">
+                        <strong>@TerminatorPro</strong> uploaded a new target for <span class="coin-badge">8 Boost Coins</span>
+                        <span class="activity-time">5 minutes ago</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-avatar">RJ</div>
+                    <div class="activity-content">
+                        <strong>@RajaHunter</strong> reached Elite OG level
+                        <span class="activity-time">8 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Ready to Become a Ban Master?</h2>
+                <p>Join thousands of hunters already using our advanced banning system</p>
+                <div class="cta-buttons">
+                    <button class="btn-cta-primary" onclick="location.href='og-boost.html'">
+                        <i class="fas fa-play"></i>
+                        Start Free Now
+                    </button>
+                    <button class="btn-cta-secondary" onclick="location.href='referral.html'">
+                        <i class="fas fa-users"></i>
+                        Invite Friends
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="temp-logo" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                        <span>TEAMxJSR</span>
+                    </div>
+                    <p>Professional Instagram banning services with advanced OG Boost technology and dual coin economy.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="og-boost.html">OG Boost</a>
+                    <a href="wallet.html">Coin Wallet</a>
+                    <a href="upload.html">Upload Target</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Banning Guide</a>
+                    <a href="#">OG Boost Tips</a>
+                    <a href="#">Coin System</a>
+                    <a href="#">Community Rules</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEAMxJSR. All rights reserved. | Professional Banning Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Initialize AOS for index.html
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize loading screen
+            if (typeof initializeLoadingScreen === 'function') {
+                initializeLoadingScreen();
+            }
+            
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            // Update navigation
+            if (typeof updateNavigation === 'function') {
+                updateNavigation();
+            }
+            
+            // Animate stats on homepage
+            const bansCount = document.getElementById('bansCount');
+            if (bansCount && typeof animateValue === 'function') {
+                animateValue(bansCount, 0, 1247, 2000);
+            }
+            
+            // Add scroll effect to navbar
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    if (window.scrollY > 100) {
+                        navbar.style.background = 'rgba(26, 26, 26, 0.98)';
+                        navbar.style.backdropFilter = 'blur(20px)';
+                    } else {
+                        navbar.style.background = 'rgba(26, 26, 26, 0.95)';
+                        navbar.style.backdropFilter = 'blur(10px)';
+                    }
+                }
+            });
+
+            // Add smooth scrolling to all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Show demo function for index page
+        function showDemo() {
+            Swal.fire({
+                title: 'TEAMxJSR Demo',
+                html: `
+                    <div style="text-align: center;">
+                        <p>Watch how our OG Boost system works:</p>
+                        <div style="background: #2a2a2a; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                            <i class="fas fa-play-circle" style="font-size: 3rem; color: #ff0000;"></i>
+                            <p style="margin-top: 10px;">Demo video coming soon!</p>
+                        </div>
+                        <p>In the meantime, try our live features:</p>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Try OG Boost',
+                cancelButtonText: 'Close',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'og-boost.html';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

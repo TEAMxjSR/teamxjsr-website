@@ -3,82 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banning Bible - TeamXjsr</title>
+    <title>The Banning Bible - Complete A to Z Guide | TEAMxJSR</title>
+    <meta name="description" content="Master the art of account banning with our comprehensive 150+ page e-book. Learn advanced methods for Instagram, Telegram, WhatsApp, and more.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-pulse">
+                    <div class="temp-logo" style="width: 70px; height: 70px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">TJ</div>
+                </div>
+                <span class="logo-text">TEAMxJSR</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-status">Loading E-book...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="logo.png" alt="TeamXjsr Logo" height="40">
-                <span>TeamXjsr</span>
+                <div class="temp-logo" style="width: 45px; height: 45px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                <span>TEAMxJSR</span>
             </div>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#free-boosting">Free Boosting</a>
-                <a href="index.html#paid-services">Paid Services</a>
-                <a href="ebook.html">E-book</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="og-boost.html" class="nav-link"><i class="fas fa-rocket"></i> OG Boost</a>
+                <a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="upload.html" class="nav-link"><i class="fas fa-upload"></i> Upload</a>
+                <a href="referral.html" class="nav-link"><i class="fas fa-users"></i> Referral</a>
+                <a href="leaderboards.html" class="nav-link"><i class="fas fa-trophy"></i> Leaderboards</a>
+                <a href="ebook.html" class="nav-link active"><i class="fas fa-book"></i> E-book</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-login" onclick="showLogin()">
+                    <i class="fas fa-user"></i> Login
+                </button>
+                <button class="btn-join" onclick="showRegister()">
+                    <i class="fas fa-play"></i> Get Started
+                </button>
             </div>
         </div>
     </nav>
 
-    <section class="ebook-hero">
-        <div class="ebook-content">
-            <h1>🚀 THE BANNING BIBLE</h1>
-            <p class="subtitle">A to Z Complete Guide to Account Banning</p>
-            
-            <div class="ebook-cover">
-                <div class="cover-design">
-                    <h2>BANNING BIBLE</h2>
-                    <p>Complete Mastery Guide</p>
-                    <div class="team-badge">TeamXjsr Official</div>
+    <!-- E-book Hero Section -->
+    <section class="ebook-hero" style="padding: 140px 2rem 80px; background: var(--gradient-dark); text-align: center;">
+        <div class="container">
+            <div class="ebook-content">
+                <div class="hero-badge" data-aos="zoom-in" style="background: var(--gradient-primary); color: var(--text); padding: 10px 25px; border-radius: 25px; display: inline-block; margin-bottom: 2rem; font-weight: bold; border: 2px solid rgba(255, 255, 255, 0.2);">
+                    <i class="fas fa-gem"></i> LIMITED TIME OFFER
                 </div>
-            </div>
+                
+                <h1 class="page-title" data-aos="fade-up" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                    <i class="fas fa-book"></i>
+                    THE BANNING BIBLE
+                </h1>
+                <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200" style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 3rem;">Complete A to Z Mastery Guide for Account Termination</p>
+                
+                <div class="ebook-showcase" data-aos="fade-up" data-aos-delay="400" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1000px; margin: 0 auto;">
+                    <div class="ebook-cover" data-aos="flip-left" data-aos-delay="600" style="background: linear-gradient(135deg, #1a1a1a, #2a0000); padding: 3rem 2rem; border-radius: 20px; border: 3px solid var(--accent-gold); text-align: center; box-shadow: var(--shadow-xl);">
+                        <div class="cover-design">
+                            <h2 style="color: var(--accent-gold); font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);">BANNING BIBLE</h2>
+                            <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">Complete Mastery Guide</p>
+                            <div class="team-badge" style="background: var(--gradient-primary); color: var(--text); padding: 8px 20px; border-radius: 15px; font-weight: bold; display: inline-block;">TEAMxJSR Official</div>
+                        </div>
+                    </div>
 
-            <div class="pricing-section">
-                <div class="original-price">Original: ₹1,999</div>
-                <div class="current-price">Launch Offer: ₹999</div>
-                <div class="discount-badge">50% OFF</div>
-            </div>
+                    <div class="pricing-section" data-aos="fade-left" data-aos-delay="800" style="text-align: center;">
+                        <div class="original-price" style="color: var(--text-muted); text-decoration: line-through; font-size: 1.5rem; margin-bottom: 0.5rem;">Original: ₹1,999</div>
+                        <div class="current-price" style="color: var(--accent-gold); font-size: 3rem; font-weight: bold; margin-bottom: 1rem;">Launch Offer: ₹999</div>
+                        <div class="discount-badge" style="background: var(--success); color: #000; padding: 8px 20px; border-radius: 20px; font-weight: bold; display: inline-block; font-size: 1.1rem;">50% OFF</div>
+                    </div>
+                </div>
 
-            <div class="features-list">
-                <h3>📖 WHAT YOU'LL GET:</h3>
-                <ul>
-                    <li>✓ 150+ Pages Complete Guide</li>
-                    <li>✓ Instagram Banning Methods (All Types)</li>
-                    <li>✓ Telegram Account Removal Techniques</li>
-                    <li>✓ WhatsApp Banning Strategies</li>
-                    <li>✓ Snapchat Account Termination</li>
-                    <li>✓ Twitter Suspension Methods</li>
-                    <li>✓ Website IP Banning Techniques</li>
-                    <li>✓ Advanced Mass Reporting Systems</li>
-                    <li>✓ Anti-Detection Methods</li>
-                    <li>✓ Legal Protection Guidelines</li>
-                    <li>✓ Premium Support Access</li>
-                </ul>
-            </div>
+                <div class="features-list" data-aos="fade-up" data-aos-delay="1000" style="max-width: 800px; margin: 3rem auto;">
+                    <h3 style="color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="fas fa-star"></i> WHAT YOU'LL GET:</h3>
+                    <div class="features-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">150+ Pages Complete Guide</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Instagram Banning Methods (All Types)</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Telegram Account Removal Techniques</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">WhatsApp Banning Strategies</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Snapchat Account Termination</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Twitter Suspension Methods</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Website IP Banning Techniques</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Advanced Mass Reporting Systems</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Anti-Detection Methods</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Legal Protection Guidelines</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Premium Support Access</span>
+                        </div>
+                        <div class="feature-item" style="display: flex; align-items: center; gap: 10px; padding: 0.8rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--border-radius);">
+                            <i class="fas fa-check" style="color: var(--success);"></i>
+                            <span style="color: var(--text);">Lifetime Updates</span>
+                        </div>
+                    </div>
+                </div>
 
-            <button class="btn-buy-ebook" onclick="buyEbook()">BUY NOW - ₹999</button>
+                <div class="cta-section" data-aos="zoom-in" data-aos-delay="1200" style="margin: 3rem 0;">
+                    <button class="btn-primary" onclick="buyEbook()" style="padding: 15px 30px; border: none; border-radius: var(--border-radius); font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 10px; margin: 0 auto; background: var(--gradient-primary); color: var(--text); position: relative; overflow: hidden;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>BUY NOW - ₹999</span>
+                        <div class="btn-shine" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); transition: left 0.5s;"></div>
+                    </button>
+                    <div class="guarantee" style="margin-top: 1.5rem;">
+                        <p style="color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-shield-alt"></i> Instant Digital Delivery • 30-Day Money Back Guarantee</p>
+                    </div>
+                </div>
 
-            <div class="guarantee">
-                <p>🔒 Instant Digital Delivery • 30-Day Money Back Guarantee</p>
+                <div class="testimonials-preview" data-aos="fade-up" data-aos-delay="1400" style="max-width: 800px; margin: 3rem auto;">
+                    <h3 style="color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="fas fa-comments"></i> What Our Readers Say:</h3>
+                    <div class="testimonial-cards" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div class="testimonial-card" data-aos="fade-right" data-aos-delay="1600" style="background: var(--surface); padding: 2rem; border-radius: var(--border-radius-lg); border: 2px solid var(--surface-light);">
+                            <p style="color: var(--text); font-style: italic; margin-bottom: 1rem;">"This e-book transformed me from beginner to pro! The methods actually work!"</p>
+                            <div class="author" style="color: var(--primary); font-weight: bold;">- @Digital_Warrior</div>
+                        </div>
+                        <div class="testimonial-card" data-aos="fade-left" data-aos-delay="1800" style="background: var(--surface); padding: 2rem; border-radius: var(--border-radius-lg); border: 2px solid var(--surface-light);">
+                            <p style="color: var(--text); font-style: italic; margin-bottom: 1rem;">"Worth every penny! Learned techniques I never knew existed."</p>
+                            <div class="author" style="color: var(--primary); font-weight: bold;">- @Cyber_Guardian</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Additional Features Section -->
+    <section class="ebook-features" style="padding: 80px 2rem; background: var(--surface-dark);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px;"><i class="fas fa-gem"></i> Premium Features</h2>
+                <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Everything you need to become a banning expert</p>
+            </div>
+
+            <div class="features-grid" data-aos="fade-up" data-aos-delay="200" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="400" style="background: var(--surface); padding: 2.5rem 2rem; border-radius: var(--border-radius-lg); border: 2px solid var(--surface-light); text-align: center; transition: var(--transition); position: relative; overflow: hidden;">
+                    <div class="feature-icon" style="font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="color: var(--text); margin-bottom: 1rem; font-size: 1.5rem;">Beginner to Pro</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Step-by-step guidance from basic reporting to advanced mass banning techniques.</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="600" style="background: var(--surface); padding: 2.5rem 2rem; border-radius: var(--border-radius-lg); border: 2px solid var(--surface-light); text-align: center; transition: var(--transition); position: relative; overflow: hidden;">
+                    <div class="feature-icon" style="font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 style="color: var(--text); margin-bottom: 1rem; font-size: 1.5rem;">Safety First</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Learn how to protect your identity and avoid detection while banning targets.</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="800" style="background: var(--surface); padding: 2.5rem 2rem; border-radius: var(--border-radius-lg); border: 2px solid var(--surface-light); text-align: center; transition: var(--transition); position: relative; overflow: hidden;">
+                    <div class="feature-icon" style="font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 style="color: var(--text); margin-bottom: 1rem; font-size: 1.5rem;">Advanced Methods</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Exclusive techniques used by professional ban hunters in the community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="temp-logo" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                        <span>TEAMxJSR</span>
+                    </div>
+                    <p>Professional Instagram banning services with advanced OG Boost technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="og-boost.html">OG Boost</a>
+                    <a href="wallet.html">Coin Wallet</a>
+                    <a href="upload.html">Upload Target</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Banning Guide</a>
+                    <a href="#">OG Boost Tips</a>
+                    <a href="#">Coin System</a>
+                    <a href="#">Community Rules</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEAMxJSR. All rights reserved. | Professional Banning Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     <script>
+        // E-book specific JavaScript
         function buyEbook() {
-            // Cashfree integration yaha ayega
-            // For now, simple order process
-            const email = prompt("Please enter your email for e-book delivery:");
-            if (email) {
-                alert(`Thank you! E-book order received.\nWe will send download link to: ${email}\n\nPlease complete payment via Cashfree.`);
-                // Redirect to Cashfree payment page
-                // window.location.href = 'your-cashfree-payment-link';
-            }
+            Swal.fire({
+                title: 'Get The Banning Bible',
+                html: `
+                    <div style="text-align: left;">
+                        <p><strong>Package Includes:</strong></p>
+                        <ul style="margin-left: 20px; margin-bottom: 1.5rem;">
+                            <li>150+ Page E-book (PDF)</li>
+                            <li>Lifetime Updates</li>
+                            <li>Premium Support</li>
+                            <li>Bonus: Advanced Methods</li>
+                        </ul>
+                        <p><strong>Price: ₹999 (One-time)</strong></p>
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label style="color: var(--text); display: block; margin-bottom: 0.5rem;">Enter your email for delivery:</label>
+                            <input type="email" id="ebookEmail" class="swal2-input" placeholder="your@email.com" required style="width: 100%; padding: 10px; border: 1px solid var(--surface-light); border-radius: var(--border-radius); background: var(--background); color: var(--text);">
+                        </div>
+                    </div>
+                `,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Proceed to Payment',
+                cancelButtonText: 'Cancel',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000',
+                preConfirm: () => {
+                    const email = document.getElementById('ebookEmail').value;
+                    if (!email) {
+                        Swal.showValidationMessage('Please enter your email');
+                        return false;
+                    }
+                    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                        Swal.showValidationMessage('Please enter a valid email address');
+                        return false;
+                    }
+                    return { email: email };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show payment processing
+                    Swal.fire({
+                        title: 'Processing Payment...',
+                        html: `
+                            <div style="text-align: center;">
+                                <div class="payment-progress" style="margin: 1.5rem 0;">
+                                    <div class="progress-bar" style="width: 100%; height: 8px; background: var(--surface-light); border-radius: 4px; overflow: hidden;">
+                                        <div class="progress-fill" id="paymentProgress" style="height: 100%; background: var(--gradient-primary); width: 0%; transition: width 0.5s ease;"></div>
+                                    </div>
+                                </div>
+                                <p>Redirecting to secure payment gateway...</p>
+                            </div>
+                        `,
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        background: '#1a1a1a',
+                        color: '#ffffff'
+                    });
+
+                    // Simulate payment processing
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        progress += 25;
+                        const progressFill = document.getElementById('paymentProgress');
+                        if (progressFill) {
+                            progressFill.style.width = progress + '%';
+                        }
+                        
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                            completeEbookPurchase(result.value.email);
+                        }
+                    }, 500);
+                }
+            });
         }
+
+        function completeEbookPurchase(email) {
+            Swal.fire({
+                title: 'Order Confirmed! 🎉',
+                html: `
+                    <div style="text-align: center;">
+                        <div class="success-icon" style="font-size: 4rem; color: var(--success); margin-bottom: 1.5rem;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <p style="margin-bottom: 1rem;">Thank you for your purchase!</p>
+                        <p style="margin-bottom: 1.5rem;">We have sent download instructions to: <strong>${email}</strong></p>
+                        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: var(--border-radius); margin: 1.5rem 0;">
+                            <p style="color: var(--accent-gold); font-weight: bold; margin-bottom: 0.5rem;">📚 Download Instructions:</p>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Check your email (including spam folder) for the download link and access instructions.</p>
+                        </div>
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonText: 'Got It!',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000'
+            });
+        }
+
+        // Add hover effects for feature cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.borderColor = 'var(--primary)';
+                    this.style.boxShadow = 'var(--shadow-lg)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.borderColor = 'var(--surface-light)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+
+            // Add shine effect to CTA button
+            const ctaButton = document.querySelector('.btn-primary');
+            if (ctaButton) {
+                ctaButton.addEventListener('mouseenter', function() {
+                    const shine = this.querySelector('.btn-shine');
+                    if (shine) {
+                        shine.style.left = '100%';
+                        setTimeout(() => {
+                            shine.style.transition = 'none';
+                            shine.style.left = '-100%';
+                            setTimeout(() => {
+                                shine.style.transition = 'left 0.5s';
+                            }, 50);
+                        }, 500);
+                    }
+                });
+            }
+
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            // Update navigation
+            if (typeof updateNavigation !== 'undefined') {
+                updateNavigation();
+            }
+        });
     </script>
 </body>
 </html>

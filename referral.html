@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral System - Earn Referral Coins | TEAMxJSR</title>
+    <meta name="description" content="Invite friends and earn Referral Coins. Get rewards when your friends join and participate in OG Boost.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-pulse">
+                    <div class="temp-logo" style="width: 70px; height: 70px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">TJ</div>
+                </div>
+                <span class="logo-text">TEAMxJSR</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-status">Loading Referral System...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="temp-logo" style="width: 45px; height: 45px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                <span>TEAMxJSR</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="og-boost.html" class="nav-link"><i class="fas fa-rocket"></i> OG Boost</a>
+                <a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="upload.html" class="nav-link"><i class="fas fa-upload"></i> Upload</a>
+                <a href="referral.html" class="nav-link active"><i class="fas fa-users"></i> Referral</a>
+                <a href="leaderboards.html" class="nav-link"><i class="fas fa-trophy"></i> Leaderboards</a>
+            </div>
+            <div class="nav-actions">
+                <div class="coin-balance">
+                    <i class="fas fa-user-friends"></i>
+                    <span id="navReferralCoins">12</span>
+                </div>
+                <button class="btn-wallet" onclick="location.href='wallet.html'">
+                    <i class="fas fa-wallet"></i> Wallet
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Referral Header -->
+    <section class="referral-hero">
+        <div class="container">
+            <div class="header-content" data-aos="fade-up">
+                <h1 class="page-title">
+                    <i class="fas fa-user-friends"></i>
+                    REFERRAL SYSTEM
+                </h1>
+                <p class="page-subtitle">Invite Friends & Earn Referral Coins • Grow Our Community</p>
+                
+                <div class="referral-stats">
+                    <div class="referral-stat-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="totalReferrals">12</div>
+                            <div class="stat-label">Total Referrals</div>
+                        </div>
+                    </div>
+                    <div class="referral-stat-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="stat-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="referralEarnings">12</div>
+                            <div class="stat-label">Referral Coins Earned</div>
+                        </div>
+                    </div>
+                    <div class="referral-stat-card" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="referralRank">#23</div>
+                            <div class="stat-label">Referral Rank</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Main Section -->
+    <section class="referral-link-section">
+        <div class="container">
+            <div class="referral-grid">
+                <!-- Referral Code Card -->
+                <div class="referral-link-card" data-aos="fade-right">
+                    <div class="card-header">
+                        <h3><i class="fas fa-link"></i> Your Referral Link</h3>
+                        <div class="card-badge">EARN 1 COIN PER REFERRAL</div>
+                    </div>
+                    
+                    <div class="referral-link-display">
+                        <input type="text" id="referralLink" class="referral-link" value="https://teamxjsr.com/ref/username123" readonly>
+                        <button class="btn-copy-link" onclick="copyReferralLink()">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    <p class="code-info">Share this link with friends to earn 1 Referral Coin when they join</p>
+
+                    <div class="share-buttons">
+                        <button class="btn-share telegram" onclick="shareOnTelegram()">
+                            <i class="fab fa-telegram"></i>
+                            Telegram
+                        </button>
+                        <button class="btn-share whatsapp" onclick="shareOnWhatsApp()">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </button>
+                        <button class="btn-share twitter" onclick="shareOnTwitter()">
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- How It Works -->
+                <div class="referral-steps">
+                    <div class="section-header">
+                        <h2><i class="fas fa-info-circle"></i> How It Works</h2>
+                    </div>
+                    
+                    <div class="steps-grid">
+                        <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="step-number">1</div>
+                            <div class="step-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <h3>Share Your Link</h3>
+                            <p>Copy and share your unique referral link with friends</p>
+                        </div>
+
+                        <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="step-number">2</div>
+                            <div class="step-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3>Friends Join</h3>
+                            <p>Your friends sign up using your referral link</p>
+                        </div>
+
+                        <div class="step-card" data-aos="fade-up" data-aos-delay="600">
+                            <div class="step-number">3</div>
+                            <div class="step-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h3>Earn Coins</h3>
+                            <p>Get 1 Referral Coin when they complete their first ban</p>
+                        </div>
+
+                        <div class="step-card" data-aos="fade-up" data-aos-delay="800">
+                            <div class="step-number">4</div>
+                            <div class="step-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h3>Upload Targets</h3>
+                            <p>Use Referral Coins to upload your own targets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Rewards -->
+    <section class="referral-rewards">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-gift"></i> Referral Rewards</h2>
+                <p>Earn bonus rewards for reaching referral milestones</p>
+            </div>
+
+            <div class="rewards-grid">
+                <div class="reward-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="reward-badge beginner">BEGINNER</div>
+                    <div class="reward-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>5 Referrals</h3>
+                    <div class="reward-prize">
+                        <i class="fas fa-coins"></i>
+                        <span>5 Bonus Coins</span>
+                    </div>
+                    <p>Reach 5 successful referrals</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span>3/5</span>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="reward-badge pro">PRO</div>
+                    <div class="reward-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>25 Referrals</h3>
+                    <div class="reward-prize">
+                        <i class="fas fa-coins"></i>
+                        <span>25 Bonus Coins</span>
+                    </div>
+                    <p>Reach 25 successful referrals</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%"></div>
+                        </div>
+                        <span>5/25</span>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="reward-badge expert">EXPERT</div>
+                    <div class="reward-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>100 Referrals</h3>
+                    <div class="reward-prize">
+                        <i class="fas fa-coins"></i>
+                        <span>100 Bonus Coins</span>
+                    </div>
+                    <p>Reach 100 successful referrals</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 5%"></div>
+                        </div>
+                        <span>5/100</span>
+                    </div>
+                </div>
+
+                <div class="reward-card" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="reward-badge legend">LEGEND</div>
+                    <div class="reward-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>500 Referrals</h3>
+                    <div class="reward-prize">
+                        <i class="fas fa-coins"></i>
+                        <span>500 Bonus Coins + VIP Status</span>
+                    </div>
+                    <p>Reach 500 successful referrals</p>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 1%"></div>
+                        </div>
+                        <span>5/500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Leaderboard -->
+    <section class="referral-leaderboard">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-trophy"></i> Top Referrers</h2>
+                <p>Community members with the most successful referrals</p>
+            </div>
+
+            <div class="leaderboard-container" data-aos="fade-up">
+                <div class="leaderboard-header">
+                    <span>Rank</span>
+                    <span>User</span>
+                    <span>Referrals</span>
+                    <span>Coins Earned</span>
+                </div>
+                
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item first">
+                        <div class="rank">1</div>
+                        <div class="user-info">
+                            <div class="user-avatar">RH</div>
+                            <div class="user-details">
+                                <span class="username">@ReferralHunter</span>
+                                <span class="user-level">Legend Referrer</span>
+                            </div>
+                        </div>
+                        <div class="referral-count">347</div>
+                        <div class="coins-earned">347</div>
+                    </div>
+
+                    <div class="leaderboard-item second">
+                        <div class="rank">2</div>
+                        <div class="user-info">
+                            <div class="user-avatar">NM</div>
+                            <div class="user-details">
+                                <span class="username">@NetworkMaster</span>
+                                <span class="user-level">Expert Referrer</span>
+                            </div>
+                        </div>
+                        <div class="referral-count">189</div>
+                        <div class="coins-earned">189</div>
+                    </div>
+
+                    <div class="leaderboard-item third">
+                        <div class="rank">3</div>
+                        <div class="user-info">
+                            <div class="user-avatar">SI</div>
+                            <div class="user-details">
+                                <span class="username">@SocialInfluencer</span>
+                                <span class="user-level">Expert Referrer</span>
+                            </div>
+                        </div>
+                        <div class="referral-count">156</div>
+                        <div class="coins-earned">156</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div class="rank">4</div>
+                        <div class="user-info">
+                            <div class="user-avatar">CL</div>
+                            <div class="user-details">
+                                <span class="username">@CommunityLeader</span>
+                                <span class="user-level">Pro Referrer</span>
+                            </div>
+                        </div>
+                        <div class="referral-count">98</div>
+                        <div class="coins-earned">98</div>
+                    </div>
+
+                    <div class="leaderboard-item current-user">
+                        <div class="rank">23</div>
+                        <div class="user-info">
+                            <div class="user-avatar">YO</div>
+                            <div class="user-details">
+                                <span class="username">@YourUsername</span>
+                                <span class="user-level">Rising Star</span>
+                            </div>
+                        </div>
+                        <div class="referral-count">12</div>
+                        <div class="coins-earned">12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Tips -->
+    <section class="referral-tips">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-lightbulb"></i> Referral Tips & Strategies</h2>
+                <p>Maximize your referral earnings with these proven strategies</p>
+            </div>
+
+            <div class="tips-grid">
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tip-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Social Media Sharing</h3>
+                    <p>Share your referral link on Instagram, Telegram, and Twitter with a compelling message about OG Boost benefits.</p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="tip-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Building</h3>
+                    <p>Create your own Telegram group and guide new members through the OG Boost process to build loyalty.</p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="tip-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educational Content</h3>
+                    <p>Create tutorials showing how to earn coins quickly. New users appreciate guidance and are more likely to stay active.</p>
+                </div>
+
+                <div class="tip-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="tip-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Track Performance</h3>
+                    <p>Monitor which platforms bring the most referrals and focus your efforts on the most effective channels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="referral-cta">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Start Earning Referral Coins Today!</h2>
+                <p>Join our top referrers and build your coin empire</p>
+                <div class="cta-buttons">
+                    <button class="btn-cta-primary" onclick="copyReferralLink()">
+                        <i class="fas fa-copy"></i>
+                        Copy Referral Link
+                    </button>
+                    <button class="btn-cta-secondary" onclick="location.href='leaderboards.html'">
+                        <i class="fas fa-trophy"></i>
+                        View Leaderboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="temp-logo" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                        <span>TEAMxJSR</span>
+                    </div>
+                    <p>Professional Instagram banning services with advanced OG Boost technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="og-boost.html">OG Boost</a>
+                    <a href="wallet.html">Coin Wallet</a>
+                    <a href="upload.html">Upload Target</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Banning Guide</a>
+                    <a href="#">OG Boost Tips</a>
+                    <a href="#">Coin System</a>
+                    <a href="#">Community Rules</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEAMxJSR. All rights reserved. | Professional Banning Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Referral specific JavaScript
+        function copyReferralLink() {
+            const referralLink = document.getElementById('referralLink');
+            if (!referralLink) return;
+            
+            referralLink.select();
+            referralLink.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(referralLink.value).then(() => {
+                Swal.fire({
+                    title: 'Copied!',
+                    text: 'Referral link copied to clipboard',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                    background: '#1a1a1a',
+                    color: '#ffffff'
+                });
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to copy referral link',
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+            });
+        }
+
+        function shareOnTelegram() {
+            const text = "Join TEAMxJSR OG Boost - Earn coins by banning Instagram accounts! Use my referral link: ";
+            const url = document.getElementById('referralLink')?.value || '';
+            const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnWhatsApp() {
+            const text = "Join TEAMxJSR OG Boost - Earn coins by banning Instagram accounts! Use my referral link: ";
+            const url = document.getElementById('referralLink')?.value || '';
+            const shareUrl = `https://wa.me/?text=${encodeURIComponent(text + url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const text = "Join TEAMxJSR OG Boost - Earn coins by banning Instagram accounts! 🚀";
+            const url = document.getElementById('referralLink')?.value || '';
+            const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+
+        // Initialize referral page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            // Update referral stats
+            if (typeof userData !== 'undefined') {
+                const totalReferrals = document.getElementById('totalReferrals');
+                const referralEarnings = document.getElementById('referralEarnings');
+                const referralRank = document.getElementById('referralRank');
+                const navReferralCoins = document.getElementById('navReferralCoins');
+                
+                if (totalReferrals) totalReferrals.textContent = userData.totalReferrals;
+                if (referralEarnings) referralEarnings.textContent = userData.referralCoins;
+                if (referralRank) referralRank.textContent = '#' + userData.referralRank;
+                if (navReferralCoins) navReferralCoins.textContent = userData.referralCoins;
+            }
+        });
+
+        // Add missing CSS classes
+        const style = document.createElement('style');
+        style.textContent = `
+            .referral-hero {
+                padding: 140px 2rem 80px;
+                background: var(--gradient-dark);
+                text-align: center;
+            }
+            
+            .referral-stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                max-width: 800px;
+                margin: 3rem auto 0;
+            }
+            
+            .referral-stat-card {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 2rem;
+                border-radius: var(--border-radius-lg);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .referral-stat-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary);
+            }
+            
+            .referral-link-section {
+                padding: 80px 2rem;
+                background: var(--surface-dark);
+            }
+            
+            .referral-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .referral-link-card {
+                background: var(--surface);
+                padding: 2.5rem;
+                border-radius: var(--border-radius-lg);
+                border: 2px solid var(--surface-light);
+                transition: var(--transition);
+            }
+            
+            .referral-link-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--accent-gold);
+            }
+            
+            .card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid var(--surface-light);
+            }
+            
+            .card-header h3 {
+                color: var(--primary);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .card-badge {
+                background: var(--gradient-gold);
+                color: #000;
+                padding: 5px 12px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+            
+            .referral-link-display {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .referral-link {
+                flex: 1;
+                background: var(--background);
+                color: var(--text);
+                border: 1px solid var(--surface-light);
+                padding: 12px;
+                border-radius: var(--border-radius);
+                font-family: monospace;
+            }
+            
+            .btn-copy-link {
+                background: var(--gradient-primary);
+                color: var(--text);
+                border: none;
+                padding: 12px 20px;
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: bold;
+            }
+            
+            .btn-copy-link:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .code-info {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .share-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .btn-share {
+                flex: 1;
+                padding: 12px 20px;
+                border: none;
+                border-radius: var(--border-radius);
+                font-weight: bold;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .btn-share.telegram {
+                background: #0088cc;
+                color: var(--text);
+            }
+            
+            .btn-share.whatsapp {
+                background: #25D366;
+                color: var(--text);
+            }
+            
+            .btn-share.twitter {
+                background: #1DA1F2;
+                color: var(--text);
+            }
+            
+            .btn-share:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-sm);
+            }
+            
+            .referral-steps {
+                background: var(--surface);
+                padding: 2.5rem;
+                border-radius: var(--border-radius-lg);
+                border: 2px solid var(--surface-light);
+            }
+            
+            .steps-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            
+            .step-card {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 2rem;
+                border-radius: var(--border-radius);
+                text-align: center;
+                transition: var(--transition);
+                border-left: 4px solid var(--primary);
+            }
+            
+            .step-card:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                background: var(--gradient-primary);
+                color: var(--text);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                margin: 0 auto 1rem;
+            }
+            
+            .step-icon {
+                font-size: 2.5rem;
+                color: var(--primary);
+                margin-bottom: 1rem;
+            }
+            
+            .step-card h3 {
+                color: var(--text);
+                margin-bottom: 1rem;
+            }
+            
+            .step-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            
+            .referral-rewards {
+                padding: 80px 2rem;
+                background: var(--gradient-dark);
+            }
+            
+            .rewards-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .reward-card {
+                background: var(--surface);
+                padding: 2.5rem 2rem;
+                border-radius: var(--border-radius-lg);
+                border: 2px solid var(--surface-light);
+                text-align: center;
+                transition: var(--transition);
+                position: relative;
+            }
+            
+            .reward-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary);
+            }
+            
+            .reward-badge {
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 5px 15px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                font-weight: bold;
+                color: #000;
+            }
+            
+            .reward-badge.beginner {
+                background: var(--success);
+            }
+            
+            .reward-badge.pro {
+                background: var(--primary);
+                color: var(--text);
+            }
+            
+            .reward-badge.expert {
+                background: var(--warning);
+            }
+            
+            .reward-badge.legend {
+                background: var(--accent-gold);
+            }
+            
+            .reward-icon {
+                font-size: 3rem;
+                color: var(--accent-gold);
+                margin-bottom: 1.5rem;
+            }
+            
+            .reward-card h3 {
+                color: var(--text);
+                margin-bottom: 1rem;
+            }
+            
+            .reward-prize {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: var(--accent-gold);
+                font-weight: bold;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+            
+            .reward-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            
+            .progress-container {
+                margin-top: 1rem;
+            }
+            
+            .progress-container span {
+                display: block;
+                text-align: center;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+            
+            .referral-leaderboard {
+                padding: 80px 2rem;
+                background: var(--surface-dark);
+            }
+            
+            .leaderboard-container {
+                background: var(--surface);
+                border-radius: var(--border-radius-lg);
+                border: 2px solid var(--surface-light);
+                overflow: hidden;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .leaderboard-header {
+                background: var(--gradient-surface);
+                padding: 1.5rem 2rem;
+                display: grid;
+                grid-template-columns: 80px 1fr 150px 150px;
+                gap: 1rem;
+                font-weight: bold;
+                color: var(--primary);
+                border-bottom: 2px solid var(--surface-light);
+            }
+            
+            .leaderboard-list {
+                max-height: 600px;
+                overflow-y: auto;
+            }
+            
+            .leaderboard-item {
+                display: grid;
+                grid-template-columns: 80px 1fr 150px 150px;
+                gap: 1rem;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--surface-light);
+                transition: var(--transition);
+                align-items: center;
+            }
+            
+            .leaderboard-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
+            .leaderboard-item:last-child {
+                border-bottom: none;
+            }
+            
+            .leaderboard-item.first {
+                background: linear-gradient(135deg, var(--surface), rgba(255, 215, 0, 0.1));
+                border-left: 4px solid var(--accent-gold);
+            }
+            
+            .leaderboard-item.second {
+                background: linear-gradient(135deg, var(--surface), rgba(192, 192, 192, 0.1));
+                border-left: 4px solid silver;
+            }
+            
+            .leaderboard-item.third {
+                background: linear-gradient(135deg, var(--surface), rgba(205, 127, 50, 0.1));
+                border-left: 4px solid #cd7f32;
+            }
+            
+            .leaderboard-item.current-user {
+                background: rgba(255, 0, 0, 0.1);
+                border: 2px solid var(--primary);
+            }
+            
+            .user-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .user-avatar {
+                width: 40px;
+                height: 40px;
+                background: var(--gradient-primary);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                color: var(--text);
+            }
+            
+            .user-details {
+                flex: 1;
+            }
+            
+            .username {
+                font-weight: bold;
+                color: var(--text);
+                display: block;
+            }
+            
+            .user-level {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+            }
+            
+            .referral-count, .coins-earned {
+                font-weight: bold;
+                color: var(--text);
+                text-align: center;
+            }
+            
+            .referral-tips {
+                padding: 80px 2rem;
+                background: var(--gradient-dark);
+            }
+            
+            .tips-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .tip-card {
+                background: var(--surface);
+                padding: 2.5rem 2rem;
+                border-radius: var(--border-radius-lg);
+                border: 2px solid var(--surface-light);
+                text-align: center;
+                transition: var(--transition);
+            }
+            
+            .tip-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary);
+            }
+            
+            .tip-icon {
+                font-size: 3rem;
+                color: var(--primary);
+                margin-bottom: 1.5rem;
+            }
+            
+            .tip-card h3 {
+                color: var(--text);
+                margin-bottom: 1rem;
+            }
+            
+            .tip-card p {
+                color: var(--text-secondary);
+                line-height: 1.6;
+            }
+            
+            .referral-cta {
+                padding: 100px 2rem;
+                background: var(--gradient-primary);
+                text-align: center;
+            }
+            
+            .cta-content h2 {
+                color: var(--text);
+                margin-bottom: 1rem;
+                font-size: 2.5rem;
+            }
+            
+            .cta-content p {
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 2rem;
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .btn-cta-primary, .btn-cta-secondary {
+                padding: 15px 30px;
+                border: none;
+                border-radius: var(--border-radius);
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .btn-cta-primary {
+                background: var(--accent-gold);
+                color: #000;
+            }
+            
+            .btn-cta-secondary {
+                background: transparent;
+                color: var(--text);
+                border: 2px solid var(--text);
+            }
+            
+            .btn-cta-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .btn-cta-secondary:hover {
+                background: var(--text);
+                color: var(--background);
+            }
+            
+            @media (max-width: 768px) {
+                .referral-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .steps-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .share-buttons {
+                    flex-direction: column;
+                }
+                
+                .leaderboard-header, 
+                .leaderboard-item {
+                    grid-template-columns: 60px 1fr 80px 80px;
+                    padding: 1rem;
+                    gap: 0.5rem;
+                    font-size: 0.8rem;
+                }
+                
+                .cta-buttons {
+                    flex-direction: column;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
