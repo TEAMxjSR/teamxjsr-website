@@ -606,8 +606,8 @@ Example:
         let currentCoinAmount = 5;
 
         // Initialize userData if not exists
-        if (typeof userData === 'undefined') {
-            var userData = {
+    if (typeof window.userData === 'undefined' || !window.userData) {
+        window.userData = {
                 boostCoins: 156,
                 referralCoins: 12,
                 totalEarned: 168,
