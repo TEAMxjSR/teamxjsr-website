@@ -648,6 +648,78 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ TEAMxJSR Website Initialized Successfully!');
 });
 
+// Add CSS for scrolled navbar state
+const style = document.createElement('style');
+style.textContent = `
+    .navbar.scrolled {
+        box-shadow: 0 4px 20px rgba(255, 0, 0, 0.15);
+        transition: all 0.3s ease;
+    }
+`;
+document.head.appendChild(style);
+
+console.log('✅ TEAMxJSR Website Initialized Successfully!');
+
+
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-container') && navLinks.classList.contains('active')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    }
+
+    // Touch device optimizations
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+        
+        // Add touch feedback
+        document.querySelectorAll('.btn, .nav-link, .feature-card, .target-card').forEach(element => {
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+    }
+});
+
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // ... rest of your mobile menu code ...
+});
+
 // Page specific initializations with enhanced functionality
 function initializePageSpecificFunctions() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -824,3 +896,4 @@ if ('performance' in window) {
         }, 0);
     });
 }
+
