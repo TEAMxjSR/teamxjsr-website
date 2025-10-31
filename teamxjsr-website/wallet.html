@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Wallet - Track Your Earnings | TEAMxJSR</title>
+    <meta name="description" content="Manage your Boost Coins and Referral Coins. Track earnings, spending, and transaction history.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-pulse">
+                    <div class="temp-logo" style="width: 70px; height: 70px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">TJ</div>
+                </div>
+                <span class="logo-text">TEAMxJSR</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-status">Loading Wallet...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="temp-logo" style="width: 45px; height: 45px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                <span>TEAMxJSR</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="og-boost.html" class="nav-link"><i class="fas fa-rocket"></i> OG Boost</a>
+                <a href="wallet.html" class="nav-link active"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="upload.html" class="nav-link"><i class="fas fa-upload"></i> Upload</a>
+                <a href="referral.html" class="nav-link"><i class="fas fa-users"></i> Referral</a>
+                <a href="leaderboards.html" class="nav-link"><i class="fas fa-trophy"></i> Leaderboards</a>
+            </div>
+            <div class="nav-actions">
+                <div class="coin-balance">
+                    <i class="fas fa-coins"></i>
+                    <span id="navBoostCoins">0</span>
+                </div>
+                <button class="btn-earn" onclick="location.href='og-boost.html'">
+                    <i class="fas fa-plus"></i> Earn Coins
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wallet Header -->
+    <section class="wallet-header">
+        <div class="container">
+            <div class="header-content" data-aos="fade-up">
+                <h1 class="page-title">
+                    <i class="fas fa-wallet"></i>
+                    COIN WALLET
+                </h1>
+                <p class="page-subtitle">Manage Your Boost Coins & Referral Coins • Track Earnings & Spending</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coin Balance Cards -->
+    <section class="balance-section">
+        <div class="container">
+            <div class="balance-cards">
+                <!-- Boost Coins Card -->
+                <div class="coin-card boost-coin" data-aos="fade-right" data-aos-delay="200">
+                    <div class="coin-header">
+                        <div class="coin-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="coin-info">
+                            <h3>Boost Coins</h3>
+                            <p>Earned from OG Boost</p>
+                        </div>
+                    </div>
+                    <div class="coin-balance">
+                        <div class="balance-amount" id="boostCoinBalance">0</div>
+                        <div class="balance-label">Current Balance</div>
+                    </div>
+                    <div class="coin-stats">
+                        <div class="stat">
+                            <span class="stat-label">Total Earned</span>
+                            <span class="stat-value" id="boostTotalEarned">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Total Spent</span>
+                            <span class="stat-value" id="boostTotalSpent">0</span>
+                        </div>
+                    </div>
+                    <div class="coin-actions">
+                        <button class="btn-earn-coins" onclick="location.href='og-boost.html'">
+                            <i class="fas fa-plus"></i> Earn More
+                        </button>
+                        <button class="btn-transfer" onclick="showTransferModal('boost')">
+                            <i class="fas fa-exchange-alt"></i> Transfer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Referral Coins Card -->
+                <div class="coin-card referral-coin" data-aos="fade-left" data-aos-delay="400">
+                    <div class="coin-header">
+                        <div class="coin-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="coin-info">
+                            <h3>Referral Coins</h3>
+                            <p>Earned from Referrals</p>
+                        </div>
+                    </div>
+                    <div class="coin-balance">
+                        <div class="balance-amount" id="referralCoinBalance">0</div>
+                        <div class="balance-label">Current Balance</div>
+                    </div>
+                    <div class="coin-stats">
+                        <div class="stat">
+                            <span class="stat-label">Total Earned</span>
+                            <span class="stat-value" id="referralTotalEarned">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Total Spent</span>
+                            <span class="stat-value" id="referralTotalSpent">0</span>
+                        </div>
+                    </div>
+                    <div class="coin-actions">
+                        <button class="btn-earn-coins" onclick="location.href='referral.html'">
+                            <i class="fas fa-user-plus"></i> Invite Friends
+                        </button>
+                        <button class="btn-use-coins" onclick="location.href='upload.html'">
+                            <i class="fas fa-upload"></i> Upload Target
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earnings Analytics -->
+    <section class="analytics-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-chart-line"></i> Earnings Analytics</h2>
+                <p>Track your coin earnings and spending patterns</p>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="analytics-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="chart-container">
+                        <canvas id="earningsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card" data-aos="fade-left" data-aos-delay="300">
+                        <div class="stat-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="totalBans">0</div>
+                            <div class="stat-label">Total Bans</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-left" data-aos-delay="400">
+                        <div class="stat-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="targetsUploaded">0</div>
+                            <div class="stat-label">Targets Uploaded</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-left" data-aos-delay="500">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="referralsCount">0</div>
+                            <div class="stat-label">Successful Referrals</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-aos="fade-left" data-aos-delay="600">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="successRate">0%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transaction History -->
+    <section class="transactions-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-history"></i> Transaction History</h2>
+                <p>Detailed record of all your coin transactions</p>
+            </div>
+
+            <div class="transactions-filters" data-aos="fade-up" data-aos-delay="200">
+                <div class="filter-group">
+                    <span class="filter-label">Coin Type:</span>
+                    <select class="filter-select" id="coinTypeFilter" onchange="filterTransactions()">
+                        <option value="all">All Coins</option>
+                        <option value="boost">Boost Coins</option>
+                        <option value="referral">Referral Coins</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Transaction Type:</span>
+                    <select class="filter-select" id="transactionTypeFilter" onchange="filterTransactions()">
+                        <option value="all">All Transactions</option>
+                        <option value="earn">Earnings</option>
+                        <option value="spend">Spending</option>
+                        <option value="transfer">Transfers</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">Time Period:</span>
+                    <select class="filter-select" id="timePeriodFilter" onchange="filterTransactions()">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="transactions-list" data-aos="fade-up" data-aos-delay="300">
+                <div class="transaction-header">
+                    <span>Description</span>
+                    <span>Amount</span>
+                    <span>Date</span>
+                    <span>Status</span>
+                </div>
+                <div class="transactions-container" id="transactionsContainer">
+                    <!-- Transactions will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <div class="load-more-section" data-aos="fade-up">
+                <button class="btn-load-more" onclick="loadMoreTransactions()">
+                    <i class="fas fa-sync-alt"></i>
+                    LOAD MORE TRANSACTIONS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                <p>Frequently used wallet operations</p>
+            </div>
+
+            <div class="actions-grid">
+                <div class="action-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="action-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Earn Boost Coins</h3>
+                    <p>Ban targets in OG Boost zone to earn Boost Coins</p>
+                    <button class="btn-action" onclick="location.href='og-boost.html'">
+                        Start Earning
+                    </button>
+                </div>
+
+                <div class="action-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="action-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Earn Referral Coins</h3>
+                    <p>Invite friends and earn Referral Coins when they join</p>
+                    <button class="btn-action" onclick="location.href='referral.html'">
+                        Invite Friends
+                    </button>
+                </div>
+
+                <div class="action-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="action-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload Target</h3>
+                    <p>Spend 1 Referral Coin to upload your target</p>
+                    <button class="btn-action" onclick="location.href='upload.html'">
+                        Upload Now
+                    </button>
+                </div>
+
+                <div class="action-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="action-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Transfer Coins</h3>
+                    <p>Send coins to other users in the community</p>
+                    <button class="btn-action" onclick="showTransferModal('both')">
+                        Transfer Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coin Value Information -->
+    <section class="coin-value-section">
+        <div class="container">
+            <div class="value-content" data-aos="fade-up">
+                <h2><i class="fas fa-info-circle"></i> Understanding Coin Values</h2>
+                <div class="value-grid">
+                    <div class="value-item" data-aos="fade-right" data-aos-delay="200">
+                        <h3>Boost Coins</h3>
+                        <ul>
+                            <li>✅ Set rewards for your uploaded targets</li>
+                            <li>✅ Transfer to other users</li>
+                            <li>✅ Earn from banning targets</li>
+                            <li>✅ No expiration date</li>
+                        </ul>
+                    </div>
+                    <div class="value-item" data-aos="fade-left" data-aos-delay="400">
+                        <h3>Referral Coins</h3>
+                        <ul>
+                            <li>✅ Upload targets (1 coin per upload)</li>
+                            <li>✅ Fixed cost regardless of reward amount</li>
+                            <li>✅ Earn from successful referrals</li>
+                            <li>❌ Cannot be transferred</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="temp-logo" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                        <span>TEAMxJSR</span>
+                    </div>
+                    <p>Professional Instagram banning services with advanced OG Boost technology.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="og-boost.html">OG Boost</a>
+                    <a href="wallet.html">Coin Wallet</a>
+                    <a href="upload.html">Upload Target</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Banning Guide</a>
+                    <a href="#">OG Boost Tips</a>
+                    <a href="#">Coin System</a>
+                    <a href="#">Community Rules</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEAMxJSR. All rights reserved. | Professional Banning Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Transfer Modal -->
+    <div id="transferModal" class="modal">
+        <div class="modal-content transfer-modal">
+            <span class="close" onclick="closeTransferModal()">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-exchange-alt"></i> Transfer Coins</h3>
+                <p>Send coins to other community members</p>
+            </div>
+            <div class="modal-body">
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-coins"></i> Coin Type</label>
+                        <select id="transferCoinType" required onchange="updateAvailableBalance()">
+                            <option value="">Select Coin Type</option>
+                            <option value="boost">Boost Coins</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Recipient Username</label>
+                        <input type="text" id="recipientUsername" placeholder="@username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-money-bill-wave"></i> Amount</label>
+                        <input type="number" id="transferAmount" placeholder="Enter amount" min="1" required oninput="validateTransferAmount()">
+                        <div class="balance-info">
+                            Available: <span id="availableBalance">0</span> coins
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Message (Optional)</label>
+                        <textarea id="transferMessage" placeholder="Add a message..."></textarea>
+                    </div>
+
+                    <div class="transfer-fee">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Transfer fee: 0% • Instant processing</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-transfer-confirm" onclick="confirmTransfer()">
+                    <i class="fas fa-paper-plane"></i>
+                    CONFIRM TRANSFER
+                </button>
+                <button class="btn-transfer-cancel" onclick="closeTransferModal()">
+                    <i class="fas fa-times"></i>
+                    CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Wallet specific JavaScript
+        let transactions = [];
+        let currentFilter = 'all';
+
+        // Initialize wallet page
+        function initializeWallet() {
+            loadTransactions();
+            updateBalanceDisplay();
+            initializeCharts();
+            updateUserStats();
+            
+            // Update navigation
+            if (typeof updateNavigation !== 'undefined') {
+                updateNavigation();
+            }
+        }
+
+        // Load transactions from userData
+        function loadTransactions() {
+            if (typeof userData !== 'undefined' && userData.transactions) {
+                transactions = userData.transactions.map((transaction, index) => {
+                    return {
+                        id: index + 1,
+                        type: transaction.type,
+                        coinType: transaction.coinType || 'boost',
+                        amount: transaction.type === 'earn' ? transaction.amount : -transaction.amount,
+                        description: transaction.description,
+                        date: transaction.date,
+                        status: 'completed'
+                    };
+                });
+            }
+            renderTransactions();
+        }
+
+        // Render transactions
+        function renderTransactions() {
+            const container = document.getElementById('transactionsContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+
+            const filteredTransactions = filterTransactionsData();
+
+            if (filteredTransactions.length === 0) {
+                container.innerHTML = `
+                    <div class="no-transactions">
+                        <i class="fas fa-receipt"></i>
+                        <p>No transactions found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredTransactions.forEach(transaction => {
+                const transactionEl = createTransactionElement(transaction);
+                container.appendChild(transactionEl);
+            });
+        }
+
+        // Filter transactions data
+        function filterTransactionsData() {
+            const coinFilter = document.getElementById('coinTypeFilter')?.value || 'all';
+            const typeFilter = document.getElementById('transactionTypeFilter')?.value || 'all';
+            const timeFilter = document.getElementById('timePeriodFilter')?.value || 'all';
+
+            return transactions.filter(transaction => {
+                // Coin type filter
+                if (coinFilter !== 'all' && transaction.coinType !== coinFilter) {
+                    return false;
+                }
+
+                // Transaction type filter
+                if (typeFilter !== 'all' && transaction.type !== typeFilter) {
+                    return false;
+                }
+
+                // Time filter
+                if (timeFilter !== 'all') {
+                    const transactionDate = new Date(transaction.date);
+                    const now = new Date();
+                    
+                    if (timeFilter === 'today') {
+                        return transactionDate.toDateString() === now.toDateString();
+                    } else if (timeFilter === 'week') {
+                        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                        return transactionDate >= weekAgo;
+                    } else if (timeFilter === 'month') {
+                        const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                        return transactionDate >= monthAgo;
+                    }
+                }
+
+                return true;
+            });
+        }
+
+        // Create transaction element
+        function createTransactionElement(transaction) {
+            const transactionEl = document.createElement('div');
+            transactionEl.className = `transaction-item ${transaction.type} ${transaction.coinType}`;
+
+            const icon = transaction.type === 'earn' ? 'fa-plus' : 
+                        transaction.type === 'spend' ? 'fa-minus' : 'fa-exchange-alt';
+
+            const amountClass = transaction.type === 'earn' ? 'amount-positive' : 'amount-negative';
+            const amountSign = transaction.type === 'earn' ? '+' : '';
+
+            transactionEl.innerHTML = `
+                <div class="transaction-main">
+                    <div class="transaction-icon">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-description">${transaction.description}</div>
+                        <div class="transaction-meta">
+                            <span class="coin-type ${transaction.coinType}">${transaction.coinType.toUpperCase()} COINS</span>
+                            <span class="transaction-date">${transaction.date}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="transaction-amount ${amountClass}">
+                    ${amountSign}${transaction.amount}
+                </div>
+                <div class="transaction-status ${transaction.status}">
+                    ${transaction.status}
+                </div>
+            `;
+
+            return transactionEl;
+        }
+
+        // Filter transactions
+        function filterTransactions() {
+            renderTransactions();
+        }
+
+        // Load more transactions
+        function loadMoreTransactions() {
+            Swal.fire({
+                title: 'Loading more transactions...',
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 1000,
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
+        }
+
+        // Update balance display
+        function updateBalanceDisplay() {
+            if (typeof userData !== 'undefined') {
+                const boostCoinBalance = document.getElementById('boostCoinBalance');
+                const referralCoinBalance = document.getElementById('referralCoinBalance');
+                const boostTotalEarned = document.getElementById('boostTotalEarned');
+                const boostTotalSpent = document.getElementById('boostTotalSpent');
+                const referralTotalEarned = document.getElementById('referralTotalEarned');
+                const referralTotalSpent = document.getElementById('referralTotalSpent');
+                
+                if (boostCoinBalance) boostCoinBalance.textContent = userData.boostCoins;
+                if (referralCoinBalance) referralCoinBalance.textContent = userData.referralCoins;
+                if (boostTotalEarned) boostTotalEarned.textContent = userData.totalEarned;
+                if (boostTotalSpent) boostTotalSpent.textContent = userData.totalSpent;
+                if (referralTotalEarned) referralTotalEarned.textContent = userData.referralCoins;
+                if (referralTotalSpent) referralTotalSpent.textContent = '0';
+                
+                // Update nav
+                const navBoostCoins = document.getElementById('navBoostCoins');
+                if (navBoostCoins) navBoostCoins.textContent = userData.boostCoins;
+            }
+        }
+
+        // Update user stats
+        function updateUserStats() {
+            if (typeof userData !== 'undefined') {
+                const totalBans = document.getElementById('totalBans');
+                const targetsUploaded = document.getElementById('targetsUploaded');
+                const referralsCount = document.getElementById('referralsCount');
+                const successRate = document.getElementById('successRate');
+                
+                if (totalBans) totalBans.textContent = userData.totalBans;
+                if (targetsUploaded) targetsUploaded.textContent = userData.targetsUploaded || 0;
+                if (referralsCount) referralsCount.textContent = userData.totalReferrals;
+                if (successRate) successRate.textContent = userData.successRate + '%';
+            }
+        }
+
+        // Initialize charts
+        function initializeCharts() {
+            const ctx = document.getElementById('earningsChart');
+            if (!ctx) return;
+            
+            try {
+                const earningsChart = new Chart(ctx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan 10', 'Jan 11', 'Jan 12', 'Jan 13', 'Jan 14', 'Jan 15'],
+                        datasets: [
+                            {
+                                label: 'Boost Coins',
+                                data: [12, 19, 8, 25, 18, 32],
+                                borderColor: '#ff0000',
+                                backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: 'Referral Coins',
+                                data: [5, 8, 3, 12, 7, 15],
+                                borderColor: '#00ff00',
+                                backgroundColor: 'rgba(0, 255, 0, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: '#ffffff',
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Coin Earnings Over Time',
+                                color: '#ffffff',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#cccccc'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#cccccc'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Chart initialization failed:', error);
+            }
+        }
+
+        // Transfer modal functions
+        function showTransferModal(coinType) {
+            const modal = document.getElementById('transferModal');
+            const coinSelect = document.getElementById('transferCoinType');
+            
+            if (!modal || !coinSelect) return;
+            
+            if (coinType !== 'both') {
+                coinSelect.value = coinType;
+                coinSelect.disabled = true;
+            } else {
+                coinSelect.disabled = false;
+            }
+            
+            updateAvailableBalance();
+            modal.style.display = 'block';
+        }
+
+        function closeTransferModal() {
+            const modal = document.getElementById('transferModal');
+            const form = document.getElementById('transferForm');
+            const coinSelect = document.getElementById('transferCoinType');
+            
+            if (modal) modal.style.display = 'none';
+            if (form) form.reset();
+            if (coinSelect) coinSelect.disabled = false;
+        }
+
+        function updateAvailableBalance() {
+            const coinType = document.getElementById('transferCoinType')?.value;
+            const balanceElement = document.getElementById('availableBalance');
+            
+            if (!balanceElement) return;
+            
+            if (coinType === 'boost' && typeof userData !== 'undefined') {
+                balanceElement.textContent = userData.boostCoins;
+            } else {
+                balanceElement.textContent = '0';
+            }
+        }
+
+        function validateTransferAmount() {
+            const amountInput = document.getElementById('transferAmount');
+            const coinType = document.getElementById('transferCoinType')?.value;
+            
+            if (!amountInput) return;
+            
+            const amount = parseInt(amountInput.value);
+            
+            if (coinType === 'boost' && amount > userData.boostCoins) {
+                amountInput.setCustomValidity('Amount exceeds available balance');
+            } else {
+                amountInput.setCustomValidity('');
+            }
+        }
+
+        function confirmTransfer() {
+            const form = document.getElementById('transferForm');
+            if (!form || !form.checkValidity()) {
+                if (form) form.reportValidity();
+                return;
+            }
+
+            const coinType = document.getElementById('transferCoinType')?.value;
+            const recipient = document.getElementById('recipientUsername')?.value;
+            const amount = parseInt(document.getElementById('transferAmount')?.value || '0');
+            const message = document.getElementById('transferMessage')?.value;
+
+            if (!coinType || !recipient || !amount) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Please fill all required fields',
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+                return;
+            }
+
+            // Check balance
+            if (coinType === 'boost' && amount > userData.boostCoins) {
+                Swal.fire({
+                    title: 'Insufficient Balance',
+                    text: `You don't have enough Boost Coins for this transfer`,
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+                return;
+            }
+
+            // Confirm transfer
+            Swal.fire({
+                title: 'Confirm Transfer',
+                html: `
+                    <div style="text-align: left;">
+                        <p><strong>Recipient:</strong> ${recipient}</p>
+                        <p><strong>Amount:</strong> ${amount} ${coinType === 'boost' ? 'Boost' : 'Referral'} Coins</p>
+                        <p><strong>Message:</strong> ${message || 'No message'}</p>
+                    </div>
+                `,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm Transfer',
+                cancelButtonText: 'Cancel',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    processTransfer(coinType, recipient, amount, message);
+                }
+            });
+        }
+
+        function processTransfer(coinType, recipient, amount, message) {
+            Swal.fire({
+                title: 'Processing Transfer...',
+                html: `
+                    <div style="text-align: center;">
+                        <div class="transfer-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%" id="transferProgress"></div>
+                            </div>
+                        </div>
+                        <p>Sending ${amount} ${coinType} coins to ${recipient}</p>
+                    </div>
+                `,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
+
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 20;
+                const progressFill = document.getElementById('transferProgress');
+                if (progressFill) {
+                    progressFill.style.width = progress + '%';
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    completeTransfer(coinType, recipient, amount, message);
+                }
+            }, 300);
+        }
+
+        function completeTransfer(coinType, recipient, amount, message) {
+            // Update user data
+            if (coinType === 'boost') {
+                userData.boostCoins -= amount;
+                userData.totalSpent += amount;
+            }
+
+            // Add transaction
+            if (userData.transactions) {
+                userData.transactions.unshift({
+                    type: 'transfer',
+                    coinType: coinType,
+                    amount: amount,
+                    description: `Transfer to ${recipient}` + (message ? `: ${message}` : ''),
+                    date: new Date().toISOString().split('T')[0]
+                });
+            }
+
+            // Update UI
+            updateBalanceDisplay();
+            loadTransactions();
+
+            Swal.fire({
+                title: 'Transfer Successful! ✅',
+                html: `
+                    <div style="text-align: center;">
+                        <p><strong>${amount} ${coinType === 'boost' ? 'Boost' : 'Referral'} Coins</strong> sent to ${recipient}</p>
+                        <p>The transfer was completed successfully.</p>
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonText: 'Done',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000'
+            });
+
+            closeTransferModal();
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            initializeWallet();
+
+            // Add event listeners for transfer form
+            const transferCoinType = document.getElementById('transferCoinType');
+            const transferAmount = document.getElementById('transferAmount');
+            
+            if (transferCoinType) {
+                transferCoinType.addEventListener('change', updateAvailableBalance);
+            }
+            
+            if (transferAmount) {
+                transferAmount.addEventListener('input', validateTransferAmount);
+            }
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('transferModal');
+                if (event.target === modal) {
+                    closeTransferModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

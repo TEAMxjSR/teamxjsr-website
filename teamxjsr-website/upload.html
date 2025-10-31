@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Target - Mass Reporting | TEAMxJSR</title>
+    <meta name="description" content="Upload your Instagram targets for mass reporting. Spend 1 Referral Coin and set custom Boost Coin rewards.">
+
+    <!-- ✅ Load external libraries first -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ✅ Always keep your custom style.css last -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-pulse">
+                    <div class="temp-logo" style="width: 70px; height: 70px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">TJ</div>
+                </div>
+                <span class="logo-text">TEAMxJSR</span>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+                <p class="loading-status">Loading Upload System...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="temp-logo" style="width: 45px; height: 45px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                <span>TEAMxJSR</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="og-boost.html" class="nav-link"><i class="fas fa-rocket"></i> OG Boost</a>
+                <a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Wallet</a>
+                <a href="upload.html" class="nav-link active"><i class="fas fa-upload"></i> Upload</a>
+                <a href="referral.html" class="nav-link"><i class="fas fa-users"></i> Referral</a>
+                <a href="leaderboards.html" class="nav-link"><i class="fas fa-trophy"></i> Leaderboards</a>
+            </div>
+            <div class="nav-actions">
+                <div class="coin-balances">
+                    <div class="coin-balance boost-coins">
+                        <i class="fas fa-coins"></i>
+                        <span id="navBoostCoins">0</span>
+                    </div>
+                    <div class="coin-balance referral-coins">
+                        <i class="fas fa-user-plus"></i>
+                        <span id="navReferralCoins">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Upload Header -->
+    <section class="upload-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    UPLOAD TARGET
+                </h1>
+                <p class="page-subtitle">Get Your Targets Mass Reported by Community • Fixed 1 Referral Coin Fee</p>
+                
+                <div class="upload-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="totalUploads">47</div>
+                            <div class="stat-label">Targets Uploaded</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="successRate">89%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="activeHunters">124</div>
+                            <div class="stat-label">Active Hunters</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Process -->
+    <section class="upload-process">
+        <div class="container">
+            <div class="process-steps">
+                <div class="process-step active">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Fill Target Details</h3>
+                        <p>Enter Instagram username and banning method</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Set Coin Reward</h3>
+                        <p>Choose Boost Coin reward (1-100+ coins)</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Pay & Upload</h3>
+                        <p>Spend 1 Referral Coin to upload</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Mass Reporting</h3>
+                        <p>Community starts banning your target</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Form Section -->
+    <section class="upload-form-section">
+        <div class="container">
+            <div class="upload-container">
+                <!-- Form Side -->
+                <div class="form-side">
+                    <div class="form-header">
+                        <h2><i class="fas fa-edit"></i> Target Details</h2>
+                        <div class="upload-cost">
+                            <i class="fas fa-tag"></i>
+                            <span>Fixed Cost: 1 Referral Coin</span>
+                        </div>
+                    </div>
+
+                    <form id="uploadForm" class="upload-form">
+                        <!-- Target Username -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fab fa-instagram"></i>
+                                Instagram Username
+                            </label>
+                            <div class="input-with-prefix">
+                                <span class="input-prefix">@</span>
+                                <input type="text" id="targetUsername" class="form-input" placeholder="username" required 
+                                       oninput="updatePreview()" maxlength="30">
+                            </div>
+                            <div class="input-hint">Enter without @ symbol (max 30 characters)</div>
+                        </div>
+
+                        <!-- Banning Method -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-list-alt"></i>
+                                Banning Method
+                            </label>
+                            <textarea id="banMethod" class="form-textarea" rows="4" 
+                                      placeholder="Describe step-by-step how to ban this target...
+Example:
+1. Report for impersonation
+2. Use 3-5 different accounts
+3. Submit screenshots as proof
+4. Wait 24 hours for results" required oninput="updatePreview()" maxlength="500"></textarea>
+                            <div class="input-hint">Clear instructions increase success rate (max 500 characters)</div>
+                        </div>
+
+                        <!-- Boost Coin Reward -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-coins"></i>
+                                Boost Coin Reward
+                            </label>
+                            <div class="coin-slider-container">
+                                <input type="range" id="coinReward" class="coin-slider" min="1" max="50" value="5" 
+                                       oninput="updateCoinValue(this.value)">
+                                <div class="slider-labels">
+                                    <span>1</span>
+                                    <span>25</span>
+                                    <span>50+</span>
+                                </div>
+                            </div>
+                            <div class="coin-input-container">
+                                <div class="coin-display">
+                                    <i class="fas fa-coins"></i>
+                                    <span id="coinValue">5</span>
+                                    <span class="coin-label">BOOST COINS</span>
+                                </div>
+                                <button type="button" class="btn-custom-amount" onclick="showCustomAmount()">
+                                    <i class="fas fa-edit"></i>
+                                    Custom Amount
+                                </button>
+                            </div>
+                            <div class="input-hint">Higher rewards attract more hunters</div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-sticky-note"></i>
+                                Additional Notes (Optional)
+                            </label>
+                            <textarea id="additionalNotes" class="form-textarea" rows="2" 
+                                      placeholder="Any special requirements or context about this target..."
+                                      oninput="updatePreview()" maxlength="200"></textarea>
+                            <div class="input-hint">Optional notes (max 200 characters)</div>
+                        </div>
+
+                        <!-- Terms Agreement -->
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                I confirm this target violates Instagram's terms and I have the right to report it
+                            </label>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn-preview-upload" onclick="previewUpload()">
+                                <i class="fas fa-eye"></i>
+                                PREVIEW UPLOAD
+                            </button>
+                            <button type="submit" class="btn-upload-target" id="uploadBtn">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                UPLOAD TARGET - 1 REFERRAL COIN
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Preview Side -->
+                <div class="preview-side">
+                    <div class="preview-header">
+                        <h2><i class="fas fa-desktop"></i> Live Preview</h2>
+                        <p>How your target will appear in OG Boost</p>
+                    </div>
+
+                    <div class="target-preview" id="targetPreview">
+                        <div class="preview-card">
+                            <div class="preview-header">
+                                <div class="target-basic-info">
+                                    <h3 id="previewUsername">@username</h3>
+                                    <div class="target-tag user-tag">
+                                        <i class="fas fa-user"></i>
+                                        By You
+                                    </div>
+                                </div>
+                                <div class="target-reward">
+                                    <div class="coin-amount">
+                                        <i class="fas fa-coins"></i>
+                                        <span id="previewCoins">5</span>
+                                    </div>
+                                    <div class="reward-label">BOOST COINS</div>
+                                </div>
+                            </div>
+
+                            <div class="preview-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-signal"></i>
+                                    <span class="difficulty" id="previewDifficulty">Medium</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>24h left</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>0 hunters</span>
+                                </div>
+                            </div>
+
+                            <div class="preview-method">
+                                <p><strong>Method:</strong> <span id="previewMethod">Banning method will appear here</span></p>
+                            </div>
+
+                            <div class="preview-actions">
+                                <button class="btn-preview-action" disabled>
+                                    <i class="fas fa-play"></i>
+                                    BAN & EARN <span id="previewEarnCoins">5</span> COINS
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upload Tips -->
+                    <div class="upload-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Upload Tips</h4>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Set higher rewards for faster results</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Clear methods increase success rate</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Active targets get more attention</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Monitor your target's progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Uploads -->
+    <section class="recent-uploads">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Recently Uploaded Targets</h2>
+                <p>See what other hunters are uploading</p>
+            </div>
+
+            <div class="uploads-grid">
+                <div class="upload-item">
+                    <div class="upload-header">
+                        <h3>@spam_account_001</h3>
+                        <div class="upload-reward">
+                            <i class="fas fa-coins"></i>
+                            <span>8</span>
+                        </div>
+                    </div>
+                    <div class="upload-meta">
+                        <span class="uploader">By @ProHunter</span>
+                        <span class="upload-time">2 hours ago</span>
+                    </div>
+                    <div class="upload-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>12 hunters</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-item">
+                    <div class="upload-header">
+                        <h3>@fake_profile_456</h3>
+                        <div class="upload-reward">
+                            <i class="fas fa-coins"></i>
+                            <span>15</span>
+                        </div>
+                    </div>
+                    <div class="upload-meta">
+                        <span class="uploader">By @EliteHunter</span>
+                        <span class="upload-time">5 hours ago</span>
+                    </div>
+                    <div class="upload-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>24 hunters</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upload-item">
+                    <div class="upload-header">
+                        <h3>@scammer_alert_789</h3>
+                        <div class="upload-reward">
+                            <i class="fas fa-coins"></i>
+                            <span>3</span>
+                        </div>
+                    </div>
+                    <div class="upload-meta">
+                        <span class="uploader">By @NewHunter</span>
+                        <span class="upload-time">8 hours ago</span>
+                    </div>
+                    <div class="upload-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>5 hunters</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="upload-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Upload FAQs</h2>
+                <p>Common questions about target uploading</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How much does it cost to upload a target?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>It costs exactly 1 Referral Coin to upload any target, regardless of the Boost Coin reward you set.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What's the minimum/maximum Boost Coin reward?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Minimum reward is 1 Boost Coin. There's no maximum limit - you can set any amount you want!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How long does my target stay active?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Targets stay active for 48 hours. High-reward targets often get banned within the first few hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Can I upload multiple targets at once?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upload as many targets as you want, as long as you have enough Referral Coins (1 per target).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="upload-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need More Referral Coins?</h2>
+                <p>Invite friends to join TEAMxJSR and earn unlimited Referral Coins</p>
+                <button class="btn-cta-referral" onclick="location.href='referral.html'">
+                    <i class="fas fa-user-plus"></i>
+                    Earn Referral Coins Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="temp-logo" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 10px;">TJ</div>
+                        <span>TEAMxJSR</span>
+                    </div>
+                    <p>Professional Instagram banning services with advanced mass reporting system.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="og-boost.html">OG Boost</a>
+                    <a href="wallet.html">Coin Wallet</a>
+                    <a href="upload.html">Upload Target</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <a href="#">Upload Guide</a>
+                    <a href="#">Coin Strategies</a>
+                    <a href="#">Success Tips</a>
+                    <a href="#">Community Rules</a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TEAMxJSR. All rights reserved. | Professional Banning Services</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Amount Modal -->
+    <div id="customAmountModal" class="modal">
+        <div class="modal-content custom-amount-modal">
+            <span class="close" onclick="closeCustomModal()">&times;</span>
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Custom Coin Amount</h3>
+            </div>
+            <div class="modal-body">
+                <div class="custom-amount-input">
+                    <label>Enter Boost Coin Reward:</label>
+                    <div class="amount-input-container">
+                        <i class="fas fa-coins"></i>
+                        <input type="number" id="customCoinInput" min="1" max="1000" value="5">
+                        <span class="amount-label">BOOST COINS</span>
+                    </div>
+                    <div class="amount-hint">Higher rewards attract more hunters (1-1000 coins)</div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" onclick="closeCustomModal()">
+                    <i class="fas fa-times"></i>
+                    CANCEL
+                </button>
+                <button class="btn-modal-confirm" onclick="setCustomAmount()">
+                    <i class="fas fa-check"></i>
+                    SET AMOUNT
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Success Modal -->
+    <div id="uploadSuccessModal" class="modal">
+        <div class="modal-content success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="success-content">
+                <h3>Target Uploaded Successfully! 🎯</h3>
+                <p>Your target has been added to OG Boost zone and is now visible to all hunters.</p>
+                <div class="success-details">
+                    <div class="detail-item">
+                        <strong>Target:</strong>
+                        <span id="successTarget">@username</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Reward:</strong>
+                        <span id="successReward">5 Boost Coins</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Cost:</strong>
+                        <span>1 Referral Coin</span>
+                    </div>
+                </div>
+            </div>
+            <div class="success-actions">
+                <button class="btn-success-view" onclick="viewInOGBoost()">
+                    <i class="fas fa-rocket"></i>
+                    VIEW IN OG BOOST
+                </button>
+                <button class="btn-success-upload" onclick="uploadAnother()">
+                    <i class="fas fa-plus"></i>
+                    UPLOAD ANOTHER
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Upload page specific JavaScript
+        let currentCoinAmount = 5;
+
+        // Initialize userData if not exists
+    if (typeof window.userData === 'undefined' || !window.userData) {
+        window.userData = {
+                boostCoins: 156,
+                referralCoins: 12,
+                totalEarned: 168,
+                totalSpent: 0,
+                totalBans: 89,
+                totalReferrals: 12,
+                successRate: 87,
+                globalRank: 47,
+                referralRank: 23,
+                ogLevel: 'intermediate',
+                ogPoints: 450,
+                totalUploads: 5,
+                targetsUploaded: 5,
+                referralsCount: 12,
+                transactions: []
+            };
+        }
+
+        // Update coin value from slider
+        function updateCoinValue(value) {
+            currentCoinAmount = parseInt(value);
+            const coinValue = document.getElementById('coinValue');
+            const previewCoins = document.getElementById('previewCoins');
+            const previewEarnCoins = document.getElementById('previewEarnCoins');
+            
+            if (coinValue) coinValue.textContent = value;
+            if (previewCoins) previewCoins.textContent = value;
+            if (previewEarnCoins) previewEarnCoins.textContent = value;
+            updatePreview();
+        }
+
+        // Show custom amount modal
+        function showCustomAmount() {
+            const customCoinInput = document.getElementById('customCoinInput');
+            if (customCoinInput) {
+                customCoinInput.value = currentCoinAmount;
+            }
+            const modal = document.getElementById('customAmountModal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        }
+
+        // Close custom modal
+        function closeCustomModal() {
+            const modal = document.getElementById('customAmountModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Set custom amount
+        function setCustomAmount() {
+            const customCoinInput = document.getElementById('customCoinInput');
+            if (!customCoinInput) return;
+            
+            const customAmount = parseInt(customCoinInput.value);
+            if (customAmount >= 1 && customAmount <= 1000) {
+                currentCoinAmount = customAmount;
+                const coinValue = document.getElementById('coinValue');
+                const previewCoins = document.getElementById('previewCoins');
+                const previewEarnCoins = document.getElementById('previewEarnCoins');
+                const coinReward = document.getElementById('coinReward');
+                
+                if (coinValue) coinValue.textContent = customAmount;
+                if (previewCoins) previewCoins.textContent = customAmount;
+                if (previewEarnCoins) previewEarnCoins.textContent = customAmount;
+                if (coinReward) coinReward.value = Math.min(customAmount, 50);
+                
+                closeCustomModal();
+                updatePreview();
+            } else {
+                Swal.fire({
+                    title: 'Invalid Amount',
+                    text: 'Please enter amount between 1-1000 coins',
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+            }
+        }
+
+        // Update live preview
+        function updatePreview() {
+            const usernameInput = document.getElementById('targetUsername');
+            const methodInput = document.getElementById('banMethod');
+            const previewUsername = document.getElementById('previewUsername');
+            const previewMethod = document.getElementById('previewMethod');
+            const difficultyElement = document.getElementById('previewDifficulty');
+
+            if (!usernameInput || !previewUsername || !previewMethod || !difficultyElement) return;
+
+            const username = usernameInput.value;
+            const method = methodInput ? methodInput.value : '';
+
+            // Update username
+            previewUsername.textContent = username ? '@' + username : '@username';
+
+            // Update method preview
+            const methodPreview = method ? (method.split('\n')[0]?.substring(0, 60) + (method.length > 60 ? '...' : '')) : 'Banning method will appear here';
+            previewMethod.textContent = methodPreview;
+
+            // Update difficulty based on coin amount
+            if (currentCoinAmount <= 3) {
+                difficultyElement.textContent = 'Easy';
+                difficultyElement.className = 'difficulty easy';
+            } else if (currentCoinAmount <= 8) {
+                difficultyElement.textContent = 'Medium';
+                difficultyElement.className = 'difficulty medium';
+            } else {
+                difficultyElement.textContent = 'Hard';
+                difficultyElement.className = 'difficulty hard';
+            }
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            if (element && element.parentElement) {
+                element.parentElement.classList.toggle('active');
+            }
+        }
+
+        // Preview upload
+        function previewUpload() {
+            const usernameInput = document.getElementById('targetUsername');
+            const methodInput = document.getElementById('banMethod');
+            
+            if (!usernameInput || !methodInput) return;
+
+            const username = usernameInput.value;
+            const method = methodInput.value;
+
+            if (!username || !method) {
+                Swal.fire({
+                    title: 'Incomplete Form',
+                    text: 'Please fill target username and banning method',
+                    icon: 'warning',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+                return;
+            }
+
+            if (userData.referralCoins < 1) {
+                Swal.fire({
+                    title: 'Insufficient Coins',
+                    html: `
+                        <div style="text-align: left;">
+                            <p><strong>Required:</strong> 1 Referral Coin</p>
+                            <p><strong>Your Balance:</strong> ${userData.referralCoins} Referral Coins</p>
+                            <p>You need ${1 - userData.referralCoins} more Referral Coin(s) to upload.</p>
+                        </div>
+                    `,
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    color: '#ffffff',
+                    confirmButtonColor: '#ff0000'
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: 'Upload Preview',
+                html: `
+                    <div style="text-align: left;">
+                        <p><strong>Target:</strong> @${username}</p>
+                        <p><strong>Boost Coin Reward:</strong> ${currentCoinAmount} coins</p>
+                        <p><strong>Upload Cost:</strong> 1 Referral Coin</p>
+                        <p><strong>Your Balance:</strong> ${userData.referralCoins} Referral Coins</p>
+                        <p>After upload: ${userData.referralCoins - 1} Referral Coins</p>
+                    </div>
+                `,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm Upload',
+                cancelButtonText: 'Edit Details',
+                background: '#1a1a1a',
+                color: '#ffffff',
+                confirmButtonColor: '#ff0000'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = document.getElementById('uploadForm');
+                    if (form) {
+                        const submitEvent = new Event('submit', { cancelable: true });
+                        form.dispatchEvent(submitEvent);
+                    }
+                }
+            });
+        }
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadForm = document.getElementById('uploadForm');
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const usernameInput = document.getElementById('targetUsername');
+                    const methodInput = document.getElementById('banMethod');
+                    const agreeTerms = document.getElementById('agreeTerms');
+                    
+                    if (!usernameInput || !methodInput || !agreeTerms) return;
+
+                    const username = usernameInput.value.trim();
+                    const method = methodInput.value.trim();
+
+                    if (!username || !method) {
+                        Swal.fire({
+                            title: 'Incomplete Form',
+                            text: 'Please fill all required fields',
+                            icon: 'error',
+                            background: '#1a1a1a',
+                            color: '#ffffff',
+                            confirmButtonColor: '#ff0000'
+                        });
+                        return;
+                    }
+
+                    if (!agreeTerms.checked) {
+                        Swal.fire({
+                            title: 'Terms Not Accepted',
+                            text: 'Please confirm the terms agreement',
+                            icon: 'warning',
+                            background: '#1a1a1a',
+                            color: '#ffffff',
+                            confirmButtonColor: '#ff0000'
+                        });
+                        return;
+                    }
+
+                    // Check coin balance
+                    if (userData.referralCoins < 1) {
+                        Swal.fire({
+                            title: 'Insufficient Coins',
+                            text: 'You need 1 Referral Coin to upload a target',
+                            icon: 'error',
+                            background: '#1a1a1a',
+                            color: '#ffffff',
+                            confirmButtonColor: '#ff0000'
+                        });
+                        return;
+                    }
+
+                    // Validate username format (basic check)
+                    if (username.length < 1 || username.length > 30) {
+                        Swal.fire({
+                            title: 'Invalid Username',
+                            text: 'Username must be between 1-30 characters',
+                            icon: 'error',
+                            background: '#1a1a1a',
+                            color: '#ffffff',
+                            confirmButtonColor: '#ff0000'
+                        });
+                        return;
+                    }
+
+                    // Simulate upload process
+                    simulateUploadProcess(username, method, currentCoinAmount);
+                });
+            }
+        });
+
+        // Simulate upload process
+        function simulateUploadProcess(username, method, coins) {
+            Swal.fire({
+                title: 'Uploading Target...',
+                html: `
+                    <div style="text-align: center;">
+                        <div class="upload-progress-container">
+                            <div class="upload-progress-bar">
+                                <div class="upload-progress-fill" id="uploadProgressFill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <p id="uploadStatus">Processing payment...</p>
+                    </div>
+                `,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                background: '#1a1a1a',
+                color: '#ffffff'
+            });
+
+            const steps = [
+                'Processing payment...',
+                'Verifying target details...',
+                'Adding to OG Boost zone...',
+                'Notifying active hunters...',
+                'Finalizing upload...'
+            ];
+
+            let currentStep = 0;
+            const progressInterval = setInterval(() => {
+                const progressFill = document.getElementById('uploadProgressFill');
+                const uploadStatus = document.getElementById('uploadStatus');
+                
+                if (progressFill && uploadStatus) {
+                    const progress = (currentStep + 1) * 20;
+                    progressFill.style.width = progress + '%';
+                    uploadStatus.textContent = steps[currentStep];
+                }
+                
+                currentStep++;
+                
+                if (currentStep >= steps.length) {
+                    clearInterval(progressInterval);
+                    completeUpload(username, method, coins);
+                }
+            }, 1000);
+        }
+
+        // Complete upload
+        function completeUpload(username, method, coins) {
+            // Deduct referral coin
+            userData.referralCoins -= 1;
+            userData.totalUploads += 1;
+            userData.targetsUploaded += 1;
+            
+            // Add transaction
+            userData.transactions.unshift({
+                type: 'spend',
+                coinType: 'referral',
+                amount: 1,
+                description: `Upload target @${username} with ${coins} Boost Coin reward`,
+                date: new Date().toISOString().split('T')[0]
+            });
+
+            // Update UI
+            updateWalletDisplay();
+            const navReferralCoins = document.getElementById('navReferralCoins');
+            const totalUploads = document.getElementById('totalUploads');
+            
+            if (navReferralCoins) navReferralCoins.textContent = userData.referralCoins;
+            if (totalUploads) totalUploads.textContent = userData.totalUploads;
+
+            // Show success modal
+            const successTarget = document.getElementById('successTarget');
+            const successReward = document.getElementById('successReward');
+            const successModal = document.getElementById('uploadSuccessModal');
+            
+            if (successTarget) successTarget.textContent = '@' + username;
+            if (successReward) successReward.textContent = coins + ' Boost Coins';
+            if (successModal) successModal.style.display = 'block';
+
+            // Reset form
+            const uploadForm = document.getElementById('uploadForm');
+            if (uploadForm) {
+                uploadForm.reset();
+            }
+            currentCoinAmount = 5;
+            
+            const coinValue = document.getElementById('coinValue');
+            const previewCoins = document.getElementById('previewCoins');
+            const previewEarnCoins = document.getElementById('previewEarnCoins');
+            const coinReward = document.getElementById('coinReward');
+            
+            if (coinValue) coinValue.textContent = '5';
+            if (previewCoins) previewCoins.textContent = '5';
+            if (previewEarnCoins) previewEarnCoins.textContent = '5';
+            if (coinReward) coinReward.value = '5';
+            
+            updatePreview();
+        }
+
+        // View in OG Boost
+        function viewInOGBoost() {
+            const successModal = document.getElementById('uploadSuccessModal');
+            if (successModal) {
+                successModal.style.display = 'none';
+            }
+            window.location.href = 'og-boost.html';
+        }
+
+        // Upload another target
+        function uploadAnother() {
+            const successModal = document.getElementById('uploadSuccessModal');
+            if (successModal) {
+                successModal.style.display = 'none';
+            }
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Update wallet display
+        function updateWalletDisplay() {
+            const navBoostCoins = document.getElementById('navBoostCoins');
+            const navReferralCoins = document.getElementById('navReferralCoins');
+            
+            if (navBoostCoins) navBoostCoins.textContent = userData.boostCoins;
+            if (navReferralCoins) navReferralCoins.textContent = userData.referralCoins;
+            
+            // Update global navigation if function exists
+            if (typeof updateNavigation !== 'undefined') {
+                updateNavigation();
+            }
+        }
+
+        // Initialize upload page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+            
+            // Update wallet display
+            updateWalletDisplay();
+            
+            const totalUploads = document.getElementById('totalUploads');
+            if (totalUploads) totalUploads.textContent = userData.totalUploads;
+
+            // Initial preview update
+            updatePreview();
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                const customModal = document.getElementById('customAmountModal');
+                const successModal = document.getElementById('uploadSuccessModal');
+                
+                if (event.target === customModal) {
+                    closeCustomModal();
+                }
+                if (event.target === successModal) {
+                    successModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
